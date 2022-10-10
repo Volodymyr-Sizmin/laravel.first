@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\UserInfoHtml;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +20,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('test', [\App\Http\Controllers\TestController::class, 'test']);
+Route::get('test', function(UserInfoHtml $info) {
+    dd($info->generate());
+});
+
 
 Auth::routes();
 
