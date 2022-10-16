@@ -46,7 +46,6 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-
     public function register(RegisterUserRequest $request)
     {
         event(new Registered($user = $this->create($request->validated())));

@@ -1,5 +1,7 @@
 <?php
 
+use App\Services\UserInfoHtml;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,15 +16,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+//    dd(route('admin.dashboard'));
     return view('welcome');
 });
 
-Route::get('test', [\App\Http\Controllers\TestController::class, 'test']);
+Route::get('test', function(UserInfoHtml $info) {
+    dd($info->generate());
+});
+
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+Route::name('admin.')->prefix('admin')->middleware(['auth', 'admin'])->group(function ()
+{
+    Route::get('dashboard',\App\Http\Controllers\Admin\DashboardController::class)->name('dashboard');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resource('categories', \App\Http\Controllers\Admin\CategoriesController::class)->except(['show']);
+    Route::resource('products', \App\Http\Controllers\Admin\ProductsController::class)->except(['show']);
+});
+
