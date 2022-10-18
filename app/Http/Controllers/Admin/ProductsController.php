@@ -46,7 +46,6 @@ class ProductsController extends Controller
 
     public function store(CreateProductRequest $request)
     {
-       dd($this->repository->create($request));
         Product::create($request->validated());
 
         return redirect()->route('admin.products.index');
