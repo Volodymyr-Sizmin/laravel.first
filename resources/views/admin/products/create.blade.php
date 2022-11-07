@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -123,6 +123,7 @@
                                       rows="10">{{ old('short_description') }}</textarea>
                         </div>
                     </div>
+
                     <div class="form-group row">
                         <label for="thumbnail"
                                class="col-md-4 col-form-label text-md-right">{{ __('Thumbnail') }}</label>
@@ -137,6 +138,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="form-group row">
                         <label for="images" class="col-md-4 col-form-label text-md-right">{{ __('Images') }}</label>
                         <div class="col-md-6">
