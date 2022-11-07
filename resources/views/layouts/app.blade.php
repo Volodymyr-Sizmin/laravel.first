@@ -56,7 +56,7 @@
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 @if (auth()->user()->is_admin)
-                                    <a href="{{ route('admin.dashboard') }}" class="dropdown-item">{{__('Admin Dashboard')}}</a>
+                                    <a href="{{ route('admin.dashboard') }}" class="dropdown-item">{{__('Admin Dashboard')}}npm run dev</a>
                                 @endif
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
