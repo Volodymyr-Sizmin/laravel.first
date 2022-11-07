@@ -18,9 +18,11 @@ class ProductRepository implements ProductRepositoryContract
             DB::beginTransaction();
 
             $data = $request->validated();
+            $images = $data['images'] ?? [];
             $category = Category::find($data['category']);
-//            $data['thumbnail'] = 'test';
+
             $product = $category->products()->create($data);
+            ImageRepository::attach($product, 'images', $images);
 
             DB::commit();
 
